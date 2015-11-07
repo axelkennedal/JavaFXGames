@@ -63,12 +63,22 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5368764">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.824295">
+              <caret line="94" column="5" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#391#392#0" expanded="true" />
-                <element signature="e#419#420#0" expanded="true" />
+                <element signature="e#591#592#0" expanded="true" />
+                <element signature="e#619#620#0" expanded="true" />
+                <element signature="e#1174#1449#0" expanded="true" />
+                <element signature="e#1448#1449#0" expanded="true" />
+                <element signature="method#setUpCanvas#0;class#Main#0" expanded="false" />
+                <element signature="method#setUpEventHandlers#0;class#Main#0" expanded="false" />
+                <element signature="e#1967#2170#0" expanded="true" />
+                <element signature="e#2169#2170#0" expanded="true" />
+                <element signature="e#2208#2414#0" expanded="true" />
+                <element signature="e#2413#2414#0" expanded="true" />
+                <element signature="method#createSprites#0;class#Main#0" expanded="false" />
+                <element signature="e#2642#2650#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -118,8 +128,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/sample/Sprite.java" />
+        <option value="$PROJECT_DIR$/src/sample/Main.java" />
       </list>
     </option>
   </component>
@@ -577,8 +587,18 @@
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#391#392#0" expanded="true" />
-            <element signature="e#419#420#0" expanded="true" />
+            <element signature="e#591#592#0" expanded="true" />
+            <element signature="e#619#620#0" expanded="true" />
+            <element signature="e#1174#1449#0" expanded="true" />
+            <element signature="e#1448#1449#0" expanded="true" />
+            <element signature="method#setUpCanvas#0;class#Main#0" expanded="false" />
+            <element signature="method#setUpEventHandlers#0;class#Main#0" expanded="false" />
+            <element signature="e#1967#2170#0" expanded="true" />
+            <element signature="e#2169#2170#0" expanded="true" />
+            <element signature="e#2208#2414#0" expanded="true" />
+            <element signature="e#2413#2414#0" expanded="true" />
+            <element signature="method#createSprites#0;class#Main#0" expanded="false" />
+            <element signature="e#2642#2650#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -605,12 +625,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5368764">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.824295">
+          <caret line="94" column="5" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#391#392#0" expanded="true" />
-            <element signature="e#419#420#0" expanded="true" />
+            <element signature="e#591#592#0" expanded="true" />
+            <element signature="e#619#620#0" expanded="true" />
+            <element signature="e#1174#1449#0" expanded="true" />
+            <element signature="e#1448#1449#0" expanded="true" />
+            <element signature="method#setUpCanvas#0;class#Main#0" expanded="false" />
+            <element signature="method#setUpEventHandlers#0;class#Main#0" expanded="false" />
+            <element signature="e#1967#2170#0" expanded="true" />
+            <element signature="e#2169#2170#0" expanded="true" />
+            <element signature="e#2208#2414#0" expanded="true" />
+            <element signature="e#2413#2414#0" expanded="true" />
+            <element signature="method#createSprites#0;class#Main#0" expanded="false" />
+            <element signature="e#2642#2650#0" expanded="true" />
           </folding>
         </state>
       </provider>
