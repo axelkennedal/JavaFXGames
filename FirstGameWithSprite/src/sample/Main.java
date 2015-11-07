@@ -12,13 +12,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- * A game utilizing a Sprite class.
+ * A game utilizing a Sprite class and a Game class.
  * @author Axel Kennedal
- * @version 1.0
+ * @version 1.2
+ * Created on 2015-11-07.
  */
 
 public class Main extends Application
@@ -28,11 +28,11 @@ public class Main extends Application
         launch(args);
     }
 
-    private static int WIDTH = 512;
-    private static int HEIGHT = 512;
+    protected static int WIDTH = 512;
+    protected static int HEIGHT = 512;
     private static GraphicsContext graphicsContext;
     private static Scene mainScene;
-    private static HashSet<KeyCode> currentlyActiveKeys;
+    protected static HashSet<KeyCode> currentlyActiveKeys;
 
     private static double aBillion = 1000000000.0;
 
@@ -43,20 +43,8 @@ public class Main extends Application
 
         setUpCanvas(primaryStage);
         setUpEventHandlers();
-        createSprites();
-
-        final long lastNanoTime = System.nanoTime();
-        new AnimationTimer()
-        {
-            public void handle(long currentNanoTime)
-            {
-                // expressed in seconds
-                double elapsedTime = (currentNanoTime - lastNanoTime) / aBillion;
-
-                // game logic
-
-            }
-        }.start();
+        Game.setUp();
+        runGameLoop();
 
         primaryStage.show();
     }
@@ -94,17 +82,22 @@ public class Main extends Application
         });
     }
 
-    private static void createSprites()
+    private static void runGameLoop()
     {
-        // player sprite
-        Sprite briefcase = new Sprite("briefcase.png", 200, 0);
-
-        // create collectibles
-        ArrayList<Sprite> moneybags = new ArrayList<Sprite>();
-        for (int i = 0; i < 15; i++)
+        final long lastNanoTime = System.nanoTime();
+        new AnimationTimer()
         {
-            Sprite moneybag = new Sprite("moneybag.png", 350 * Math.random() + 50, 350 * Math.random() + 50);
-            moneybags.add(moneybag);
-        }
+            public void handle(long currentNanoTime)
+            {
+                // expressed in seconds
+                double elapsedTime = (currentNanoTime - lastNanoTime) / aBillion;
+
+                // game logic
+                Game.tick(elapsedTime);
+
+                // render
+                Game.render(graphicsContext);
+            }
+        }.start();
     }
 }

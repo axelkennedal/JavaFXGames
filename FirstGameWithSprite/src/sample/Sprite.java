@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 /**
  * A basic sprite for 2D games.
  * @author Axel Kennedal
- * @version 1.2
+ * @version 1.35
  * Created on 2015-11-07.
  */
 public class Sprite
@@ -23,7 +23,34 @@ public class Sprite
     private double width;
     private double height;
 
+    /**
+     * Change the horizontal velocity.
+     * @param velocityDifference how much to change the velocity with.
+     */
+    public void changeVelocityX(double velocityDifference)
+    {
+        velocityX += velocityDifference;
+    }
 
+    /**
+     * Change the vertical velocity.
+     * @param velocityDifference how much to change the velocity with.
+     */
+    public void changeVelocityY(double velocityDifference)
+    {
+        velocityY += velocityDifference;
+    }
+
+    /**
+     * Change the horizontal and vertical velocity.
+     * @param velocityDifferenceX how much to change the horizontal velocity with.
+     * @param velocityDifferenceY how much to change the vertical velocity with.
+     */
+    public void changeVelocity(double velocityDifferenceX, double velocityDifferenceY)
+    {
+        changeVelocityX(velocityDifferenceX);
+        changeVelocityY(velocityDifferenceY);
+    }
 
     /**
      * Main constructor.
@@ -76,7 +103,7 @@ public class Sprite
     public void tick(double time)
     {
         positionX += velocityX * time;
-        positionX += velocityY * time;
+        positionY += velocityY * time;
     }
 
     /**
@@ -107,6 +134,11 @@ public class Sprite
         return otherSprite.getBoundary().intersects(this.getBoundary());
     }
 
+    /**
+     * Set 2D-position of this Sprite.
+     * @param positionX new horizontal position.
+     * @param positionY new vertical position.
+     */
     public void setPosition(double positionX, double positionY)
     {
         this.positionX = positionX;
