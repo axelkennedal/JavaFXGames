@@ -18,7 +18,7 @@ import java.util.HashSet;
  * A game utilizing a Sprite class and a Game class. The player collects randomly placed collectibles
  * and the game is quit when all are collected.
  * @author Axel Kennedal
- * @version 1.3
+ * @version 1.35
  * Created on 2015-11-07.
  */
 
@@ -34,8 +34,6 @@ public class Main extends Application
     private static GraphicsContext graphicsContext;
     private static Scene mainScene;
     protected static HashSet<KeyCode> currentlyActiveKeys;
-
-    private static double aBillion = 1000000000.0;
 
     @Override
     public void start(Stage primaryStage) throws Exception
@@ -85,13 +83,13 @@ public class Main extends Application
 
     private static void runGameLoop()
     {
-        final long lastNanoTime = System.nanoTime();
         new AnimationTimer()
         {
+            final long lastNanoTime = System.nanoTime();
             public void handle(long currentNanoTime)
             {
                 // expressed in seconds
-                double elapsedTime = (currentNanoTime - lastNanoTime) / aBillion;
+                double elapsedTime = (currentNanoTime - lastNanoTime) / GameTools.A_BILLION;
 
                 // game logic
                 if (!Game.tick(elapsedTime))
@@ -101,6 +99,8 @@ public class Main extends Application
                 }
 
                 Game.render(graphicsContext);
+
+                GameTools.displayFPS(graphicsContext);
             }
         }.start();
     }
