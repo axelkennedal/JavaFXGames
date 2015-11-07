@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 /**
  * A basic sprite for 2D games.
  * @author Axel Kennedal
- * @version 1.0
+ * @version 1.2
  * Created on 2015-11-07.
  */
 public class Sprite
@@ -23,9 +23,21 @@ public class Sprite
     private double width;
     private double height;
 
-    Sprite(Image spriteGraphic, double positionX, double positionY, double velocityX, double velocityY)
+
+
+    /**
+     * Main constructor.
+     * @param spriteGraphicName the name of the image to use a graphic for this Sprite.
+     *                          Image must be placed in the same folder as Main.java or
+     *                          a subfolder of the parent folder of Main.java.
+     * @param positionX horizontal position.
+     * @param positionY vertical position.
+     * @param velocityX horizontal speed.
+     * @param velocityY vertical speed.
+     */
+    Sprite(String spriteGraphicName, double positionX, double positionY, double velocityX, double velocityY)
     {
-        image = spriteGraphic;
+        image = new Image(getResource(spriteGraphicName));
         width = image.getWidth();
         height = image.getHeight();
 
@@ -33,6 +45,28 @@ public class Sprite
         this.positionY = positionY;
         this.velocityX = velocityX;
         this.velocityY = velocityY;
+    }
+
+    /**
+     * Create a new sprite with a specified location.
+     * @param spriteGraphicName
+     * @param positionX
+     * @param positionY
+     */
+    Sprite(String spriteGraphicName, double positionX, double positionY)
+    {
+        this(spriteGraphicName, positionX, positionY, 0, 0);
+    }
+
+    /**
+     * Create a new sprite with spatial data unspecified.
+     * @param spriteGraphicName the name of the image to use a graphic for this Sprite.
+     *                          Image must be placed in the same folder as Main.java or
+     *                          a subfolder of the parent folder of Main.java.
+     */
+    Sprite(String spriteGraphicName)
+    {
+        this(spriteGraphicName, 0, 0, 0, 0);
     }
 
     /**
@@ -71,5 +105,21 @@ public class Sprite
     public boolean intersects(Sprite otherSprite)
     {
         return otherSprite.getBoundary().intersects(this.getBoundary());
+    }
+
+    public void setPosition(double positionX, double positionY)
+    {
+        this.positionX = positionX;
+        this.positionY = positionY;
+    }
+
+    /**
+     * Return the URL of the resource for the specified filename.
+     * @param filename the name of the file to get the URL for.
+     * @return a string representation of the URL for the resource.
+     */
+    private static String getResource(String filename)
+    {
+        return Main.class.getResource(filename).toString();
     }
 }

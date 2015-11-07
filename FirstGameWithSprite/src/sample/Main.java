@@ -32,7 +32,7 @@ public class Main extends Application
 
         setUpCanvas(primaryStage);
 
-        
+        Sprite briefcase = new Sprite("briefcase.png", 200, 0);
 
         primaryStage.show();
     }
