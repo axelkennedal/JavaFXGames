@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 /**
  * A basic sprite for 2D games.
  * @author Axel Kennedal
- * @version 1.35
+ * @version 1.4
  * Created on 2015-11-07.
  */
 public class Sprite
@@ -20,16 +20,43 @@ public class Sprite
     private double positionY;
     private double velocityX;
     private double velocityY;
+    private double maxVelocity;
+    private double acceleration;
     private double width;
     private double height;
 
     /**
-     * Change the horizontal velocity.
+     * Get the acceleration of this sprite.
+     * @return the acceleration of this sprite.
+     */
+    public double getAcceleration()
+    {
+        return acceleration;
+    }
+
+    /**
+     * Change the horizontal velocity. Makes sure the new velocity does not
+     * exceed the maxVelocity.
      * @param velocityDifference how much to change the velocity with.
      */
     public void changeVelocityX(double velocityDifference)
     {
-        velocityX += velocityDifference;
+        // velocity can be both positive and negative, so use abs()
+        if (Math.abs(velocityX += velocityDifference) <= maxVelocity)
+        {
+            velocityX += velocityDifference;
+        }
+        else
+        {
+            if (velocityDifference >= 0)
+            {
+                velocityX = maxVelocity;
+            }
+            else
+            {
+                velocityX = -maxVelocity;
+            }
+        }
     }
 
     /**
@@ -38,7 +65,22 @@ public class Sprite
      */
     public void changeVelocityY(double velocityDifference)
     {
-        velocityY += velocityDifference;
+        // velocity can be both positive and negative, so use abs()
+        if (Math.abs(velocityY += velocityDifference) <= maxVelocity)
+        {
+            velocityY += velocityDifference;
+        }
+        else
+        {
+            if (velocityDifference >= 0)
+            {
+                velocityY = maxVelocity;
+            }
+            else
+            {
+                velocityY = -maxVelocity;
+            }
+        }
     }
 
     /**
@@ -72,6 +114,8 @@ public class Sprite
         this.positionY = positionY;
         this.velocityX = velocityX;
         this.velocityY = velocityY;
+        this.acceleration = 0.005;
+        this.maxVelocity = 0.3;
     }
 
     /**
@@ -127,7 +171,7 @@ public class Sprite
     /**
      * Test if this sprite intersects another one. Useful for collision detection.
      * @param otherSprite other sprite to check intersection with.
-     * @return true if this sprite intersects the otherSprite, otherwise false.
+     * @return true if this sprite intersects the otherSprite, false otherwise.
      */
     public boolean intersects(Sprite otherSprite)
     {

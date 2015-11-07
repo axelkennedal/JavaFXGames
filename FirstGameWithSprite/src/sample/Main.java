@@ -15,9 +15,10 @@ import javafx.stage.Stage;
 import java.util.HashSet;
 
 /**
- * A game utilizing a Sprite class and a Game class.
+ * A game utilizing a Sprite class and a Game class. The player collects randomly placed collectibles
+ * and the game is quit when all are collected.
  * @author Axel Kennedal
- * @version 1.2
+ * @version 1.3
  * Created on 2015-11-07.
  */
 
@@ -93,9 +94,12 @@ public class Main extends Application
                 double elapsedTime = (currentNanoTime - lastNanoTime) / aBillion;
 
                 // game logic
-                Game.tick(elapsedTime);
+                if (!Game.tick(elapsedTime))
+                {
+                    stop();
+                    System.exit(0);
+                }
 
-                // render
                 Game.render(graphicsContext);
             }
         }.start();

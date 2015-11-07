@@ -3,6 +3,7 @@ package sample;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,7 +11,7 @@ import java.util.Iterator;
 /**
  * Handles overall game logic and rendering.
  * @author Axel Kennedal
- * @version 1.0
+ * @version 1.2
  * Created on 2015-11-07.
  */
 public class Game
@@ -18,29 +19,29 @@ public class Game
     private static Sprite playerSprite;
     private static ArrayList<Sprite> collectibles;
     private static int score = 0;
-    private static double acceleration = 0.005;
 
     /**
      * Perform one "tick" in the game, i.e. move objects, perform collision detection and logic.
      * @param elapsedTime time since the game was started.
+     * @return true if the game loop should keep running, false otherwise.
      */
-    public static void tick(double elapsedTime)
+    public static boolean tick(double elapsedTime)
     {
         if (Main.currentlyActiveKeys.contains(KeyCode.LEFT))
         {
-            playerSprite.changeVelocityX(-acceleration);
+            playerSprite.changeVelocityX(-playerSprite.getAcceleration());
         }
         if (Main.currentlyActiveKeys.contains(KeyCode.RIGHT))
         {
-            playerSprite.changeVelocityX(acceleration);
+            playerSprite.changeVelocityX(playerSprite.getAcceleration());
         }
         if (Main.currentlyActiveKeys.contains(KeyCode.UP))
         {
-            playerSprite.changeVelocityY(-acceleration);
+            playerSprite.changeVelocityY(-playerSprite.getAcceleration());
         }
         if (Main.currentlyActiveKeys.contains(KeyCode.DOWN))
         {
-            playerSprite.changeVelocityY(acceleration);
+            playerSprite.changeVelocityY(playerSprite.getAcceleration());
         }
         playerSprite.tick(elapsedTime);
 
@@ -54,6 +55,16 @@ public class Game
                 collectiblesIterator.remove();
                 score += 25;
             }
+        }
+
+        // end game when all collectibles are collected
+        if (collectibles.isEmpty())
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 
@@ -72,10 +83,10 @@ public class Game
         }
 
         String scoreText = "Cash: " + score + "$";
-        graphicsContext.setFill(Color.DARKSEAGREEN);
-        graphicsContext.setFill(Color.BLACK);
-        graphicsContext.fillText(scoreText, 20, 20);
-        graphicsContext.strokeText(scoreText, 20, 20);
+        graphicsContext.setFont(new Font(35));
+        graphicsContext.setStroke(Color.GREEN);
+        graphicsContext.setLineWidth(1);
+        graphicsContext.strokeText(scoreText, 20, 45);
     }
 
     /**
