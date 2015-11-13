@@ -11,7 +11,7 @@ import java.util.Iterator;
 /**
  * Handles overall game logic and rendering.
  * @author Axel Kennedal
- * @version 1.2
+ * @version 1.22
  * Created on 2015-11-07.
  */
 public class Game
@@ -27,19 +27,19 @@ public class Game
      */
     public static boolean tick(double elapsedTime)
     {
-        if (Main.currentlyActiveKeys.contains(KeyCode.LEFT))
+        if (Main.getCurrentlyActiveKeys().contains(KeyCode.LEFT))
         {
             playerSprite.changeVelocityX(-playerSprite.getAcceleration());
         }
-        if (Main.currentlyActiveKeys.contains(KeyCode.RIGHT))
+        if (Main.getCurrentlyActiveKeys().contains(KeyCode.RIGHT))
         {
             playerSprite.changeVelocityX(playerSprite.getAcceleration());
         }
-        if (Main.currentlyActiveKeys.contains(KeyCode.UP))
+        if (Main.getCurrentlyActiveKeys().contains(KeyCode.UP))
         {
             playerSprite.changeVelocityY(-playerSprite.getAcceleration());
         }
-        if (Main.currentlyActiveKeys.contains(KeyCode.DOWN))
+        if (Main.getCurrentlyActiveKeys().contains(KeyCode.DOWN))
         {
             playerSprite.changeVelocityY(playerSprite.getAcceleration());
         }
@@ -54,6 +54,7 @@ public class Game
             {
                 collectiblesIterator.remove();
                 score += 25;
+                Main.getAudioManager().playSound("pickup");
             }
         }
 

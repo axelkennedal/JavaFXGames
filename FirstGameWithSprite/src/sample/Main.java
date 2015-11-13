@@ -33,19 +33,37 @@ public class Main extends Application
     protected static int HEIGHT = 512;
     private static GraphicsContext graphicsContext;
     private static Scene mainScene;
-    protected static HashSet<KeyCode> currentlyActiveKeys;
+    private static HashSet<KeyCode> currentlyActiveKeys;
+    private static AudioManager audioManager;
+
+    public static AudioManager getAudioManager()
+    {
+        return audioManager;
+    }
+
+    public static HashSet<KeyCode> getCurrentlyActiveKeys()
+    {
+        return currentlyActiveKeys;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception
     {
         primaryStage.setTitle("MoneyCollector");
 
+        setUpSounds();
         setUpCanvas(primaryStage);
         setUpEventHandlers();
         Game.setUp();
         runGameLoop();
 
         primaryStage.show();
+    }
+
+    private static void setUpSounds()
+    {
+        audioManager = new AudioManager();
+        audioManager.addSound("pickup.wav", "pickup", true);
     }
 
     private static void setUpCanvas(Stage primaryStage)

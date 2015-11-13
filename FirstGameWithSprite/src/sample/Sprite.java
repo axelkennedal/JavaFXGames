@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 /**
  * A basic sprite for 2D games.
  * @author Axel Kennedal
- * @version 1.4
+ * @version 1.41
  * Created on 2015-11-07.
  */
 public class Sprite
@@ -106,7 +106,7 @@ public class Sprite
      */
     Sprite(String spriteGraphicName, double positionX, double positionY, double velocityX, double velocityY)
     {
-        image = new Image(getResource(spriteGraphicName));
+        image = new Image(IO.getResource(spriteGraphicName));
         width = image.getWidth();
         height = image.getHeight();
 
@@ -187,15 +187,5 @@ public class Sprite
     {
         this.positionX = positionX;
         this.positionY = positionY;
-    }
-
-    /**
-     * Return the URL of the resource for the specified filename.
-     * @param filename the name of the file to get the URL for.
-     * @return a string representation of the URL for the resource.
-     */
-    private static String getResource(String filename)
-    {
-        return Main.class.getResource(filename).toString();
     }
 }
